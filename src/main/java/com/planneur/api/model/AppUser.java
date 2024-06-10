@@ -1,19 +1,33 @@
 package com.planneur.api.model;
 
-public class User {
+import jakarta.persistence.*;
 
-    private int id;
+@Entity
+public class AppUser {
+
+    @Id
+    @SequenceGenerator(
+            name="app_user_id_sequence",
+            sequenceName = "app_user_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "app_user_id_sequence"
+    )
+    private Integer id;
     private String name;
-    private String password;
     private String email;
+    private String password;
 
     // Constructor
-    public User(String password, String email, String name, int id) {
-        this.password = password;
-        this.email = email;
-        this.name = name;
+    public AppUser(Integer id, String name, String email, String password) {
         this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
+
+    public AppUser() {}
 
     // Getter & Setters
     public String getEmail() {
@@ -40,11 +54,11 @@ public class User {
         this.name = name;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
