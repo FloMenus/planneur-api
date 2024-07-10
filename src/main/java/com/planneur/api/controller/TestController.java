@@ -1,6 +1,6 @@
 package com.planneur.api.controller;
 
-import com.planneur.api.model.AppUser;
+import com.planneur.api.model.appuser.AppUser;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     @RequestMapping(method = RequestMethod.GET, value = "/test")
     public String test() {
-    AppUser testUser = new AppUser(123, "test@test.com", "Florent", "1234");
+        AppUser testUser = new AppUser(123, "test@test.com", "Florent", "1234", false);
         return testUser.getName();
     }
 }

@@ -1,35 +1,46 @@
-package com.planneur.api.model;
+package com.planneur.api.model.appuser;
 
+import com.planneur.api.model.Category;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class AppUser {
 
     @Id
-    @SequenceGenerator(
-            name="app_user_id_sequence",
-            sequenceName = "app_user_id_sequence"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "app_user_id_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
     private String password;
+    private Boolean isLogged;
+
+    @OneToMany
+    private List<Category> categories= new ArrayList<Category>();
 
     // Constructor
-    public AppUser(Integer id, String name, String email, String password) {
+    public AppUser(Integer id, String name, String email, String password, Boolean isLogged) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.isLogged = isLogged;
     }
 
-    public AppUser() {}
+    public AppUser() {
+    }
 
     // Getter & Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -54,13 +65,12 @@ public class AppUser {
         this.name = name;
     }
 
-    public Integer getId() {
-        return id;
+
+    public void setLogged(Boolean logged) {
+        isLogged = logged;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Boolean getLogged() {
+        return isLogged;
     }
-
-
 }

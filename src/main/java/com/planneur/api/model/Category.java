@@ -1,30 +1,37 @@
 package com.planneur.api.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Category {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    private String background_color;
-    private int position;
-    private int projectId;
+    private String backgroundColor;
+    private Integer position;
+    private Integer appUserId;
 
     // Constructor
-    public Category(int id, String name, String background_color, int position, int projectId) {
-        this.id = id;
+    public Category(String name, String backgroundColor, Integer position, Integer appUserId) {
         this.name = name;
-        this.background_color = background_color;
+        this.backgroundColor = backgroundColor;
         this.position = position;
-        this.projectId = projectId;
+        this.appUserId = appUserId;
+    }
+
+    public Category() {
     }
 
     //Getters & Setters
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -34,27 +41,27 @@ public class Category {
         this.name = name;
     }
 
-    public String getBackground_color() {
-        return background_color;
+    public String getBackgroundColor() {
+        return backgroundColor;
     }
 
     public void setBackground_color(String background_color) {
-        this.background_color = background_color;
+        this.backgroundColor = background_color;
     }
 
-    public int getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
-    public int getProjectId() {
-        return projectId;
+    public Integer getAppUserId() {
+        return appUserId;
     }
 
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
+    public void setAppUserId(Integer appUserId) {
+        this.appUserId = appUserId;
     }
 }
